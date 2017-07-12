@@ -26,24 +26,24 @@ class RegExpPattern(BasePattern):
 		return False
 
 class BasePattern:
-		__metaclass__= ABCMeta
-		@staticmethod
-		def instantiate_the_uninstantiated(self, o):
-			if isinstance(o, types.ClassType): # instantiating with all default parameters
-				return o()
-			return o
-		@staticmethod
-		def default_accessor(self, _dict):
-			return _dict['BodyText']
-		@abstractmethod
-		def __eq__(self, other):
-			return False
-		def __or__(self, pattern2):
-			return OrPattern(self, pattern2)
-		def nword(self):
-			if hasattr(self, 'nwords'):
-				return self.nwords
-			return 1
-		def _(self):
-			return 1
+	__metaclass__= ABCMeta
+	@staticmethod
+	def instantiate_the_uninstantiated(self, o):
+		if isinstance(o, types.ClassType): # instantiating with all default parameters
+			return o()
+		return o
+	@staticmethod
+	def default_text_accessor(self, _dict):
+		return _dict['BodyText']
+	@abstractmethod
+	def __eq__(self, other):
+		return False
+	def __or__(self, pattern2):
+		return OrPattern(self, pattern2)
+	def nword(self):
+		if hasattr(self, 'nwords'):
+			return self.nwords
+		return 1
+	def _(self):
+		return 1
  
