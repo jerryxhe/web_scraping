@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+__author__="Jerry He"
 import re
 
 class OrPattern(BasePattern):
@@ -5,14 +7,15 @@ class OrPattern(BasePattern):
 		self.pat1=pat1
 		self.pat2=pat2
 	def __eq__(self, other):
-		if self.pat1==other or self.pat2==other:
-			return True
-		return False
+		try:
+			return (self.pat1==other or self.pat2==other)
+		except:
+			return False
 
 class RegExpPattern(BasePattern):
 	"""TODO: class-level caching"""
 	def __init__(self, pat_str):
-		self.re = re.compile(pat_str, re.UNICODE | re.IGNORECASE)
+		self.re = re.compile(pat_str, re.UNICODE | re.IGNORECASE | re.MULTILINE)
 		self.name="_pattern:"+pat_str
 	def __eq__(self, sentence_context): 
 		if self.re.match(sentence_context):
