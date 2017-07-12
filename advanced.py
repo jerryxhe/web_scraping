@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+from abc import ABCMeta,abstractproperty,abstractmethod
+import types
+
 __author__="Jerry He"
 import re
 
